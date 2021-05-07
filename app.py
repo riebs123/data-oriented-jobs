@@ -63,11 +63,11 @@ def QuerySuperDict():
         return jsonify(super_dictionary)
         
 
-@app.route('/salaryscatter')
-def QuerySalaryScatter():
+#@app.route('/salaryscatter')
+#def QuerySalaryScatter():
 
-    session = session(engine)
-    results = session.query(table.)
+#    session = session(engine)
+#    results = session.query(table.)
 
 #@app.route("/salaryvscompanyrating")
 
