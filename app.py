@@ -8,6 +8,11 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
+from sqlalchemy import func
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy.sql import label
+
 
 #import config.py
 from config import username, password, db
@@ -85,6 +90,24 @@ def QuerySalaryScatter():
 
     return jsonify(min_salary_vs_rating_dictionary)
 
+@app.route('/jobbubbles')
+def QueryJobBubbleChart():
+
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.LOCATION, table.LAT, table.LONG, label('JOB_COUNT', func.count(table.JOB_CATEGORY))).group_by(table.JOB_CATEGORY, table.LOCATION, table.LAT, table.LONG).filter(table.LAT.isnot(None))
+    session.close
+
+    job_bubble_dict = []
+    for JOB_CATEGORY, LOCATION, LAT, LONG, JOB_COUNT in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["location"] = LOCATION
+        dict["lat"] = LAT
+        dict["long"] = LONG
+        dict["job_count"] = JOB_COUNT
+        job_bubble_dict.append(dict)
+
+    return jsonify(job_bubble_dict)
 
 #@app.route("/salaryvscompanyrating")
 
