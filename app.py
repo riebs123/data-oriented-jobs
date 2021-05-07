@@ -36,38 +36,55 @@ def IndexRoute():
 def QuerySuperDict():
 
     #open a session, run the query, then close it again
-    session = session(engine)
-    results = session.query(table.job_category, table.job_title, table.salary_estimate, table.job_description, table.rating, table.company_name, table.location, table.headquarters, table.size, table.type_of_ownership, table.industry, table.sector, table.revenue, table.competitors, table.easy_apply)
-    session.close
-
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.JOB_TITLE, table.SALARY_ESTIMATE, table.JOB_DESCRIPTION, table.RATING, table.COMPANY_NAME, table.LOCATION,table.LAT, table.LONG, table.HEADQUARTERS, table.SIZE, table.TYPE_OF_OWNERSHIP, table.INDUSTRY, table.SECTOR, table.REVENUE, table.COMPETITORS, table.EASY_APPLY, table.MIN_SALARY, table.MAX_SALARY, table.AVERAGE_SALARY).all()
+    #results = session.execute("select * from data_jobs")
+    session.close()
+    
     super_dictionary = []
-    for job_category, job_title, salary_estimate, job_description, rating, company_name, location, headquarters, size, type_of_ownership, industry, sector, revenue, competitors, easy_apply in results:
+    for JOB_CATEGORY, JOB_TITLE, SALARY_ESTIMATE, JOB_DESCRIPTION, RATING, COMPANY_NAME, LOCATION,LAT, LONG, HEADQUARTERS, SIZE, TYPE_OF_OWNERSHIP, INDUSTRY, SECTOR, REVENUE, COMPETITORS, EASY_APPLY, MIN_SALARY, MAX_SALARY, AVERAGE_SALARY in results:
         dict = {}
-        dict["job_category"] = job_category
-        dict["job_title"] = job_title
-        dict["salary_estimate"] = salary_estimate
-        dict["job_description"] = job_description
-        dict["rating"] = rating
-        dict["company_name"] = company_name
-        dict["location"] = location
-        dict["headquarters"] = headquarters
-        dict["size"] = size
-        dict["type_of_ownership"] = type_of_ownership
-        dict["industry"] = industry
-        dict["sector"] = sector
-        dict["revenue"] = revenue
-        dict["competitors"] = competitors
-        dict["easy_apply"] = easy_apply
+        dict["job_category"] = JOB_CATEGORY
+        dict["job_title"] = JOB_TITLE
+        dict["salary_estimate"] = SALARY_ESTIMATE
+        dict["job_description"] = JOB_DESCRIPTION
+        dict["rating"] = RATING
+        dict["company_name"] = COMPANY_NAME
+        dict["location"] = LOCATION
+        dict["lat"] = LAT
+        dict["long"] = LONG
+        dict["headquarters"] = HEADQUARTERS
+        dict["size"] = SIZE
+        dict["type_of_ownership"] = TYPE_OF_OWNERSHIP
+        dict["industry"] = INDUSTRY
+        dict["sector"] = SECTOR
+        dict["revenue"] = REVENUE
+        dict["competitors"] = COMPETITORS
+        dict["easy_apply"] = EASY_APPLY
+        dict["min_salary"] = MIN_SALARY
+        dict["max_salary"] = MAX_SALARY
+        dict["average_salary"] = AVERAGE_SALARY
         super_dictionary.append(dict)
 
-        return jsonify(super_dictionary)
+    return jsonify(super_dictionary)
         
 
-@app.route('/salaryscatter')
+@app.route('/minsalaryscatter')
 def QuerySalaryScatter():
 
-    session = session(engine)
-    results = session.query(table.)
+    session = Session(engine)
+    results = session.query(table.RATING, table.MIN_SALARY)
+    session.close
+
+    min_salary_vs_rating_dictionary = []
+    for RATING, MIN_SALARY in results:
+        dict = {}
+        dict["rating"] = RATING
+        dict["min_salary"] = MIN_SALARY
+        min_salary_vs_rating_dictionary.append(dict)
+
+    return jsonify(min_salary_vs_rating_dictionary)
+
 
 #@app.route("/salaryvscompanyrating")
 
