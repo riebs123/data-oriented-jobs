@@ -1,9 +1,10 @@
 console.log('leaflet js loaded')
 
+
 // Create a map object
 var myMap = L.map("leafmap", {
   center: [39, -97],
-  zoom: 5
+  zoom: 4
 });
 
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -31,15 +32,36 @@ var job_counts = [
   LOCATION:       "Burbank, CA",
   LAT: 34.1816482,
   LONG: -118.3258554,
-  JOB_COUNT:  21}
+  JOB_COUNT:  21},
+  { JOB_CATEGORY:"Data Analyst",
+  LOCATION:		"Pico Rivera, CA",
+  LAT: 33.9830688,
+  LONG: -118.096735,
+  JOB_COUNT:	5}
+  // ,
+  // { JOB_CATEGORY:"Data Engineer",
+  // LOCATION:		"Monterey Park, CA",
+  // LAT: 34.051522,
+  // LONG: -118.129807,
+  // JOB_COUNT: 3}
   ];
 
+  //define arrays to hold circles
+var busAnalMarkers = [];
+var dataAnalMarkers = [];
+var dataSciMarkers = [];
+var dataEngMarkers = [];
 
 // Loop through the cities array and create one marker for each city object
 for (var i = 0; i < job_counts.length; i++) {
 
-  // Conditionals for countries points
   var color = "";
+  var lat = job_counts[i].LAT;
+  var long = job_counts[i].LONG;
+  var markerRad = job_counts[i].JOB_COUNT;
+  var jobLoc = job_counts[i].LOCATION;
+  var jobCount = job_counts[i].JOB_COUNT;
+
   if (job_counts[i].JOB_CATEGORY == 'Business Analyst') {
     color = "yellow";
   }
@@ -56,11 +78,11 @@ for (var i = 0; i < job_counts.length; i++) {
   // Add circles to map
   L.circle([job_counts[i].LAT,job_counts[i].LONG], {
     fillOpacity: 0.75,
-    color: "white",
+    color: color,
     fillColor: color,
     // Adjust radius
     radius: job_counts[i].JOB_COUNT * 1500
-  }).bindPopup("<h1>" + job_counts[i].LOCATION + "</h1> <hr> <h3>Total Jobs: " + job_counts[i].JOB_COUNT + "</h3>").addTo(myMap);
+  }).bindPopup("<h2>" + job_counts[i].LOCATION + "</h2> <hr> <h3>Total Jobs: " + job_counts[i].JOB_COUNT + "</h3>").addTo(myMap);
 }
 
 // Set up the legend
