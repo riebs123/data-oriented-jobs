@@ -59,36 +59,41 @@ d3.json('/salarybox').then(function (salary_data) {
 
     const data = {
     categories: [
-        'Data Analyst', 'Data Science', 'Business Analyst', 'Data Engineer'
+        'Minimum Salary', 'Maximum Salary', 'Average Salary'
     ],
     series: [
         {
-            name: 'Minimum Salary',
+            name: 'Data Analyst',
             data: [
                 data_analyst_min_salary_arr,
-                data_scientest_min_salary_arr,
-                business_analyst_min_salary_arr,
-                data_engineer_min_salary_arr
-            ],
-        },
-        {
-            name: 'Maximum Salary',
-            data: [
                 data_analyst_max_salary_arr,
-                data_scientest_max_salary_arr,
-                business_analyst_max_salary_arr,
-                data_engineer_max_salary_arr
+                data_analyst_avg_salary_arr
             ],
         },
         {
-            name: 'Average Salary',
+            name: 'Data Science',
             data: [
-                data_analyst_avg_salary_arr,
-                data_scientest_avg_salary_arr,
-                business_analyst_avg_salary_arr,
+                data_scientest_min_salary_arr,
+                data_scientest_max_salary_arr,
+                data_scientest_avg_salary_arr
+            ],
+        },
+        {
+            name: 'Business Analyst',
+            data: [
+                business_analyst_min_salary_arr,
+                business_analyst_max_salary_arr,
+                business_analyst_avg_salary_arr
+            ],
+        },
+        {
+            name: 'Data Engineer',
+            data: [
+                data_engineer_min_salary_arr,
+                data_engineer_max_salary_arr,
                 data_engineer_avg_salary_arr
             ],
-        },
+        }
     ],
     };
     const options = {
