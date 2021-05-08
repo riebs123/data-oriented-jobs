@@ -17,6 +17,37 @@ html {
   margin: 0;
 }
 
+
+body::after {
+  content: "";
+  background: url(http://www.clker.com/cliparts/7/2/4/b/1362484186358113490primary-colors-hi.png);
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  z-index: -1;   
+}
+
+
+.jumbotron{
+  padding-top:30px;
+  padding-bottom:30px;
+  margin-bottom:30px;
+  color:inherit;
+  /* background-color:#eee */
+  background-image: url("http://www.clker.com/cliparts/7/2/4/b/1362484186358113490primary-colors-hi.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+    /* "pexels-alexander-ant-4585185.jpg"); */
+  /* Photo by Alexander Ant from Pexels */
+  /* http://www.clker.com/cliparts/7/2/4/b/1362484186358113490primary-colors-hi.png"); */
+
+}
+
 .legend {
   padding: 6px 8px;
   font: 12px Arial, Helvetica, sans-serif;
