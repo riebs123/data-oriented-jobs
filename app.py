@@ -145,7 +145,7 @@ def QueryJobBubbleChart():
 def QuerySalaryBox():
 
     session = Session(engine)
-    results = session.query(table.JOB_CATEGORY, table.MIN_SALARY, table.MAX_SALARY, table.AVERAGE_SALARY)
+    results = session.query(table.JOB_CATEGORY, table.MIN_SALARY, table.MAX_SALARY, table.AVERAGE_SALARY).group_by(table.MIN_SALARY, table.MAX_SALARY, table.AVERAGE_SALARY, table.JOB_CATEGORY).filter(table.MIN_SALARY.isnot(None))
     session.close
 
     salary_dictionary = []
@@ -196,7 +196,7 @@ def QueryMaxSalaryBox():
 def QueryAverageSalaryBox():
 
     session = Session(engine)
-    results = session.query(table.JOB_CATEGORY, table.AVERAGE_SALARY)
+    results = session.query(table.JOB_CATEGORY, table.AVERAGE_SALARY).filter(table.AVERAGE_SALARY.isnot(None))
     session.close
 
     average_salary_dictionary = []
