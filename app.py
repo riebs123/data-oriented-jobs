@@ -75,7 +75,7 @@ def QuerySuperDict():
         
 
 @app.route('/minsalaryscatter')
-def QuerySalaryScatter():
+def QueryMinSalaryScatter():
 
     session = Session(engine)
     results = session.query(table.RATING, table.MIN_SALARY)
@@ -89,6 +89,38 @@ def QuerySalaryScatter():
         min_salary_vs_rating_dictionary.append(dict)
 
     return jsonify(min_salary_vs_rating_dictionary)
+
+@app.route('/maxsalaryscatter')
+def QueryMaxSalaryScatter():
+
+    session = Session(engine)
+    results = session.query(table.RATING, table.MAX_SALARY)
+    session.close
+
+    max_salary_vs_rating_dictionary = []
+    for RATING, MAX_SALARY in results:
+        dict = {}
+        dict["rating"] = RATING
+        dict["max_salary"] = MAX_SALARY
+        max_salary_vs_rating_dictionary.append(dict)
+
+    return jsonify(max_salary_vs_rating_dictionary)
+
+@app.route('/averagesalaryscatter')
+def QueryAverageSalaryScatter():
+
+    session = Session(engine)
+    results = session.query(table.RATING, table.AVERAGE_SALARY)
+    session.close
+
+    average_salary_vs_rating_dictionary = []
+    for RATING, AVERAGE_SALARY in results:
+        dict = {}
+        dict["rating"] = RATING
+        dict["average_salary"] = AVERAGE_SALARY
+        average_salary_vs_rating_dictionary.append(dict)
+
+    return jsonify(average_salary_vs_rating_dictionary)
 
 @app.route('/jobbubbles')
 def QueryJobBubbleChart():
@@ -108,6 +140,73 @@ def QueryJobBubbleChart():
         job_bubble_dict.append(dict)
 
     return jsonify(job_bubble_dict)
+
+@app.route('/salarybox')
+def QuerySalaryBox():
+
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.MIN_SALARY, table.MAX_SALARY, table.AVERAGE_SALARY)
+    session.close
+
+    salary_dictionary = []
+    for JOB_CATEGORY, MIN_SALARY, MAX_SALARY, AVERAGE_SALARY in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["min_salary"] = MIN_SALARY
+        dict["max_salary"] = MAX_SALARY
+        dict["average_salary"] = AVERAGE_SALARY
+        salary_dictionary.append(dict)
+
+    return jsonify(salary_dictionary)
+
+
+@app.route('/minsalarybox')
+def QueryMinSalaryBox():
+
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.MIN_SALARY)
+    session.close
+
+    min_salary_dictionary = []
+    for JOB_CATEGORY, MIN_SALARY in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["min_salary"] = MIN_SALARY
+        min_salary_dictionary.append(dict)
+
+    return jsonify(min_salary_dictionary)
+
+@app.route('/maxsalarybox')
+def QueryMaxSalaryBox():
+
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.MAX_SALARY)
+    session.close
+
+    max_salary_dictionary = []
+    for JOB_CATEGORY, MAX_SALARY in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["max_salary"] = MAX_SALARY
+        max_salary_dictionary.append(dict)
+
+    return jsonify(max_salary_dictionary)
+
+@app.route('/averagesalarybox')
+def QueryAverageSalaryBox():
+
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.AVERAGE_SALARY)
+    session.close
+
+    average_salary_dictionary = []
+    for JOB_CATEGORY, AVERAGE_SALARY in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["average_salary"] = AVERAGE_SALARY
+        average_salary_dictionary.append(dict)
+
+    return jsonify(average_salary_dictionary)
 
 #@app.route("/salaryvscompanyrating")
 
