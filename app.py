@@ -75,7 +75,7 @@ def QuerySuperDict():
         
 
 @app.route('/minsalaryscatter')
-def QuerySalaryScatter():
+def QueryMinSalaryScatter():
 
     session = Session(engine)
     results = session.query(table.RATING, table.MIN_SALARY)
@@ -89,6 +89,38 @@ def QuerySalaryScatter():
         min_salary_vs_rating_dictionary.append(dict)
 
     return jsonify(min_salary_vs_rating_dictionary)
+
+@app.route('/maxsalaryscatter')
+def QueryMaxSalaryScatter():
+
+    session = Session(engine)
+    results = session.query(table.RATING, table.MIN_SALARY)
+    session.close
+
+    max_salary_vs_rating_dictionary = []
+    for RATING, MAX_SALARY in results:
+        dict = {}
+        dict["rating"] = RATING
+        dict["max_salary"] = MAX_SALARY
+        max_salary_vs_rating_dictionary.append(dict)
+
+    return jsonify(max_salary_vs_rating_dictionary)
+
+@app.route('/averagesalaryscatter')
+def QueryAverageSalaryScatter():
+
+    session = Session(engine)
+    results = session.query(table.RATING, table.MIN_SALARY)
+    session.close
+
+    average_salary_vs_rating_dictionary = []
+    for RATING, AVERAGE_SALARY in results:
+        dict = {}
+        dict["rating"] = RATING
+        dict["average_salary"] = AVERAGE_SALARY
+        average_salary_vs_rating_dictionary.append(dict)
+
+    return jsonify(average_salary_vs_rating_dictionary)
 
 @app.route('/jobbubbles')
 def QueryJobBubbleChart():
