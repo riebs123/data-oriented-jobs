@@ -18,35 +18,43 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // Test data
 var job_counts = [
-  { JOB_CATEGORY:"Business Analyst",
-  LOCATION:   "Scotts Valley, CA",
-  LAT: 37.0510595,
-  LONG: -122.0146841,
-  JOB_COUNT:  10},
-  { JOB_CATEGORY : "Data Science",
-  LOCATION:   "Pasadena, CA",
-  LAT: 37.0510595,
-  LONG: -118.1444779,
-  JOB_COUNT:  10},
-  { JOB_CATEGORY:"Business Analyst",
-  LOCATION:       "Burbank, CA",
-  LAT: 34.1816482,
-  LONG: -118.3258554,
-  JOB_COUNT:  21},
-  { JOB_CATEGORY:"Data Analyst",
-  LOCATION:		"Pico Rivera, CA",
-  LAT: 33.9830688,
-  LONG: -118.096735,
-  JOB_COUNT:	5}
+  {
+    JOB_CATEGORY: "Business Analyst",
+    LOCATION: "Scotts Valley, CA",
+    LAT: 37.0510595,
+    LONG: -122.0146841,
+    JOB_COUNT: 10
+  },
+  {
+    JOB_CATEGORY: "Data Science",
+    LOCATION: "Pasadena, CA",
+    LAT: 37.0510595,
+    LONG: -118.1444779,
+    JOB_COUNT: 10
+  },
+  {
+    JOB_CATEGORY: "Business Analyst",
+    LOCATION: "Burbank, CA",
+    LAT: 34.1816482,
+    LONG: -118.3258554,
+    JOB_COUNT: 21
+  },
+  {
+    JOB_CATEGORY: "Data Analyst",
+    LOCATION: "Pico Rivera, CA",
+    LAT: 33.9830688,
+    LONG: -118.096735,
+    JOB_COUNT: 5
+  }
   // ,
   // { JOB_CATEGORY:"Data Engineer",
   // LOCATION:		"Monterey Park, CA",
   // LAT: 34.051522,
   // LONG: -118.129807,
   // JOB_COUNT: 3}
-  ];
+];
 
-  //define arrays to hold circles
+//define arrays to hold circles
 var busAnalMarkers = [];
 var dataAnalMarkers = [];
 var dataSciMarkers = [];
@@ -58,25 +66,65 @@ for (var i = 0; i < job_counts.length; i++) {
   var color = "";
   var lat = job_counts[i].LAT;
   var long = job_counts[i].LONG;
-  var markerRad = job_counts[i].JOB_COUNT;
+  var markerRadius = job_counts[i].JOB_COUNT * 1500;
   var jobLoc = job_counts[i].LOCATION;
   var jobCount = job_counts[i].JOB_COUNT;
 
   if (job_counts[i].JOB_CATEGORY == 'Business Analyst') {
     color = "yellow";
+    busAnalMarkers.push(
+      L.circle([lat, long], {
+        fillOpacity: 0.75,
+        color: color,
+        fillColor: color,
+        // Adjust radius
+        radius: markerRadius
+      }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
+    );
   }
   else if (job_counts[i].JOB_CATEGORY == 'Data Science') {
     color = "blue";
+    dataSciMarkers.push(
+      L.circle([lat, long], {
+        fillOpacity: 0.75,
+        color: color,
+        fillColor: color,
+        // Adjust radius
+        radius: markerRadius
+      }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
+    );
+
   }
   else if (job_counts[i].JOB_CATEGORY == 'Data Engineer') {
     color = "green";
+    dataEngMarkers.push(
+      L.circle([lat, long], {
+        fillOpacity: 0.75,
+        color: color,
+        fillColor: color,
+        // Adjust radius
+        radius: markerRadius
+      }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
+    );
   }
   else {
     color = "red";
+    dataAnalMarkers.push(
+      L.circle([lat, long], {
+        fillOpacity: 0.75,
+        color: color,
+        fillColor: color,
+        // Adjust radius
+        radius: markerRadius
+      }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
+    );
   }
 
+  var dataEngLayer = L.layerGroup(dataEngMarkers);
+  var dataAnalyLayer = L.layerGroup(dataAnalMarkers);
+  
   // Add circles to map
-  L.circle([job_counts[i].LAT,job_counts[i].LONG], {
+  L.circle([job_counts[i].LAT, job_counts[i].LONG], {
     fillOpacity: 0.75,
     color: color,
     fillColor: color,
@@ -87,7 +135,7 @@ for (var i = 0; i < job_counts.length; i++) {
 
 // Set up the legend
 var legend = L.control({ position: "topright" });
-legend.onAdd = function() {  //when add legend to map need to calculate few things
+legend.onAdd = function () {  //when add legend to map need to calculate few things
   var div = L.DomUtil.create("div", "info legend");   //creates a div with class of info legend
 
   var labels = [];
@@ -95,10 +143,10 @@ legend.onAdd = function() {  //when add legend to map need to calculate few thin
   //populates stuff in legend
   var legendInfo = "<h1>Legend</h1>" +
     "<div class=\"labels\">" +
-      "<div class=\"min\">  Data Analyst <BR>" +
-      " Data Sceintist  </div>" +
+    "<div class=\"min\">  Data Analyst <BR>" +
+    " Data Sceintist  </div>" +
     "</div>";
-//modify html to add legend info
+  //modify html to add legend info
   div.innerHTML = legendInfo;
   // limits.forEach(function(limit, index) {
   //   labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
