@@ -7,50 +7,6 @@ console.log('leaflet js loaded');
 //   zoom: 4
 // });
 console.log("arg");
-d3.json("/jobbubbles").then(function (job_counts) {
-
-  // ... and dump that JSON to the console for inspection
-  console.log(job_counts); 
-});
-console.log('fucks');
-
-// Test data
-var job_counts = [
-  {
-    JOB_CATEGORY: "Business Analyst",
-    LOCATION: "Scotts Valley, CA",
-    LAT: 37.0510595,
-    LONG: -122.0146841,
-    JOB_COUNT: 10
-  },
-  {
-    JOB_CATEGORY: "Data Science",
-    LOCATION: "Pasadena, CA",
-    LAT: 37.0510595,
-    LONG: -118.1444779,
-    JOB_COUNT: 10
-  },
-  {
-    JOB_CATEGORY: "Business Analyst",
-    LOCATION: "Burbank, CA",
-    LAT: 34.1816482,
-    LONG: -118.3258554,
-    JOB_COUNT: 21
-  },
-  {
-    JOB_CATEGORY: "Data Analyst",
-    LOCATION: "Pico Rivera, CA",
-    LAT: 33.9830688,
-    LONG: -118.096735,
-    JOB_COUNT: 5
-  }
-  ,
-  { JOB_CATEGORY:"Data Engineer",
-  LOCATION:		"Monterey Park, CA",
-  LAT: 34.051522,
-  LONG: -118.129807,
-  JOB_COUNT: 3}
-];
 
 //define arrays to hold circles
 var busAnalMarkers = [];
@@ -58,17 +14,69 @@ var dataAnalMarkers = [];
 var dataSciMarkers = [];
 var dataEngMarkers = [];
 
+console.log("??here?");
+d3.json("/jobbubbles").then(function (job_counts) {
+
+  // ... and dump that JSON to the console for inspection
+  console.log(job_counts); 
+
+// });  //moved this to the bottom
+
+
+// Test data
+// var job_counts = [
+//   {
+//     JOB_CATEGORY: "Business Analyst",
+//     LOCATION: "Scotts Valley, CA",
+//     LAT: 37.0510595,
+//     LONG: -122.0146841,
+//     JOB_COUNT: 10
+//   },
+//   {
+//     JOB_CATEGORY: "Data Science",
+//     LOCATION: "Pasadena, CA",
+//     LAT: 37.0510595,
+//     LONG: -118.1444779,
+//     JOB_COUNT: 10
+//   },
+//   {
+//     JOB_CATEGORY: "Business Analyst",
+//     LOCATION: "Burbank, CA",
+//     LAT: 34.1816482,
+//     LONG: -118.3258554,
+//     JOB_COUNT: 21
+//   },
+//   {
+//     JOB_CATEGORY: "Data Analyst",
+//     LOCATION: "Pico Rivera, CA",
+//     LAT: 33.9830688,
+//     LONG: -118.096735,
+//     JOB_COUNT: 5
+//   }
+//   ,
+//   { JOB_CATEGORY:"Data Engineer",
+//   LOCATION:		"Monterey Park, CA",
+//   LAT: 34.051522,
+//   LONG: -118.129807,
+//   JOB_COUNT: 3}
+// ];
+
+console.log("here?");
 // Loop through the job counts marker for each city object
-for (var i = 0; i < job_counts.length; i++) {
-
+for (var i = 0; i < job_counts.length; i++) {//6; i++){//
+// console.log(job_counts[i])
   var color = "";
-  var lat = job_counts[i].LAT;
-  var long = job_counts[i].LONG;
-  var markerRadius = job_counts[i].JOB_COUNT * 1500;
-  var jobLoc = job_counts[i].LOCATION;
-  var jobCount = job_counts[i].JOB_COUNT;
+  var lat = job_counts[i].lat;
+  var long = job_counts[i].long;
+  var markerRadius = job_counts[i].job_count * 1500;
+  var jobLoc = job_counts[i].location;
+  var jobCount = job_counts[i].job_count;
+  var jobCategory = job_counts[i].job_category;
 
-  if (job_counts[i].JOB_CATEGORY == 'Business Analyst') {
+console.log(lat);
+console.log(job_counts[i].job_category);
+  if (jobCategory == 'Business Analyst') {
+    console.log("A business analyst!")
     color = "yellow";
     busAnalMarkers.push(
       L.circle([lat, long], {
@@ -79,7 +87,7 @@ for (var i = 0; i < job_counts.length; i++) {
       }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
     );
   }
-  else if (job_counts[i].JOB_CATEGORY == 'Data Science') {
+  else if (jobCategory  == 'Data Science') {
     color = "blue";
     dataSciMarkers.push(
       L.circle([lat, long], {
@@ -91,7 +99,7 @@ for (var i = 0; i < job_counts.length; i++) {
     );
 
   }
-  else if (job_counts[i].JOB_CATEGORY == 'Data Engineer') {
+  else if (jobCategory  == 'Data Engineer') {
     color = "green";
     dataEngMarkers.push(
       L.circle([lat, long], {
@@ -114,7 +122,10 @@ for (var i = 0; i < job_counts.length; i++) {
     );
   }
 }
-
+console.log("LENGTH  IS : "+busAnalMarkers.length);
+//}); // moving to the end
+console.log("why can't I get here?")
+console.log("LENGTH  IS : "+busAnalMarkers.length);
   var dataSciLayer = L.layerGroup(dataSciMarkers);
   var busAnalyLayer = L.layerGroup(busAnalMarkers);
   var dataEngLayer = L.layerGroup(dataEngMarkers);
@@ -155,7 +166,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 //only want checkboxes in the control, not radio buttons hence first variable passed as NULL
 L.control.layers(null, overlayMaps, {collapsed: false}).addTo(myMap);
 
-
+});
 
 // Set up the legend
 // var legend = L.control({ position: "topright" });
