@@ -11,6 +11,8 @@ const chart = toastui.Chart;
 //     };
 
 // });
+
+
 d3.json('/salarybox').then(function (salary_data) {
     const el = document.getElementById('leaflet');
 

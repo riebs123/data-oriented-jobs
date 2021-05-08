@@ -208,7 +208,24 @@ def QueryAverageSalaryBox():
 
     return jsonify(average_salary_dictionary)
 
-#@app.route("/salaryvscompanyrating")
+@app.route("/salaryvscompanyrating")
+def QuerySalaryVsRatings():
+
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.MIN_SALARY, table.MAX_SALARY, table.AVERAGE_SALARY, table.RATING).filter(table.RATING !=-1)
+    session.close
+
+    salary_vs_rating_dict = []
+    for JOB_CATEGORY, MIN_SALARY, MAX_SALARY, AVERAGE_SALARY, RATING in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["min_salary"] = MIN_SALARY
+        dict["max_salary"] = MAX_SALARY
+        dict["average_salary"] = AVERAGE_SALARY
+        dict["rating"] = RATING
+        salary_vs_rating_dict.append(dict)
+
+    return jsonify(salary_vs_rating_dict)
 
 if __name__ == '__main__':
     app.run(debug=True)
