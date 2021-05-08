@@ -6,12 +6,13 @@ console.log('leaflet js loaded');
 //   center: [39, -97],
 //   zoom: 4
 // });
+console.log("arg");
 d3.json("/jobbubbles").then(function (job_counts) {
 
   // ... and dump that JSON to the console for inspection
   console.log(job_counts); 
 });
-
+console.log('fucks');
 
 // Test data
 var job_counts = [
@@ -152,7 +153,9 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(myMap);
 
 //only want checkboxes in the control, not radio buttons hence first variable passed as NULL
-L.control.layers(null, overlayMaps).addTo(myMap);
+L.control.layers(null, overlayMaps, {collapsed: false}).addTo(myMap);
+
+
 
 // Set up the legend
 // var legend = L.control({ position: "topright" });
