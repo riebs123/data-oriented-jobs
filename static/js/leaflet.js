@@ -1,4 +1,4 @@
-console.log('leaflet js loaded')
+console.log('leaflet js loaded');
 
 
 // Create a map object
@@ -6,7 +6,11 @@ console.log('leaflet js loaded')
 //   center: [39, -97],
 //   zoom: 4
 // });
+d3.json("/jobbubbles").then(function (job_counts) {
 
+  // ... and dump that JSON to the console for inspection
+  console.log(job_counts); 
+});
 
 
 // Test data
@@ -39,12 +43,12 @@ var job_counts = [
     LONG: -118.096735,
     JOB_COUNT: 5
   }
-  // ,
-  // { JOB_CATEGORY:"Data Engineer",
-  // LOCATION:		"Monterey Park, CA",
-  // LAT: 34.051522,
-  // LONG: -118.129807,
-  // JOB_COUNT: 3}
+  ,
+  { JOB_CATEGORY:"Data Engineer",
+  LOCATION:		"Monterey Park, CA",
+  LAT: 34.051522,
+  LONG: -118.129807,
+  JOB_COUNT: 3}
 ];
 
 //define arrays to hold circles
@@ -53,7 +57,7 @@ var dataAnalMarkers = [];
 var dataSciMarkers = [];
 var dataEngMarkers = [];
 
-// Loop through the cities array and create one marker for each city object
+// Loop through the job counts marker for each city object
 for (var i = 0; i < job_counts.length; i++) {
 
   var color = "";
@@ -70,7 +74,6 @@ for (var i = 0; i < job_counts.length; i++) {
         fillOpacity: 0.75,
         color: color,
         fillColor: color,
-        // Adjust radius
         radius: markerRadius
       }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
     );
@@ -82,7 +85,6 @@ for (var i = 0; i < job_counts.length; i++) {
         fillOpacity: 0.75,
         color: color,
         fillColor: color,
-        // Adjust radius
         radius: markerRadius
       }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
     );
@@ -95,7 +97,6 @@ for (var i = 0; i < job_counts.length; i++) {
         fillOpacity: 0.75,
         color: color,
         fillColor: color,
-        // Adjust radius
         radius: markerRadius
       }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
     );
@@ -107,7 +108,6 @@ for (var i = 0; i < job_counts.length; i++) {
         fillOpacity: 0.75,
         color: color,
         fillColor: color,
-        // Adjust radius
         radius: markerRadius
       }).bindPopup("<h2>" + jobLoc + "</h2> <hr> <h3>Total Jobs: " + jobCount + "</h3>")
     );
@@ -151,6 +151,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
+//only want checkboxes in the control, not radio buttons hence first variable passed as NULL
 L.control.layers(null, overlayMaps).addTo(myMap);
 
 // Set up the legend
