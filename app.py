@@ -37,6 +37,12 @@ def IndexRoute():
     webpage = render_template("index.html")
     return webpage
 
+# this is route for table page
+@app.route("/table")
+def tableRoute():
+    webpage = render_template("table.html")
+    return webpage
+
 @app.route("/superdict")
 def QuerySuperDict():
 
@@ -72,7 +78,31 @@ def QuerySuperDict():
         super_dictionary.append(dict)
 
     return jsonify(super_dictionary)
-        
+
+
+
+@app.route("/tabledict")
+def QueryTableDict():
+
+    #open a session, run the query, then close it again
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.JOB_TITLE, table.SALARY_ESTIMATE, table.RATING, table.LOCATION, table.INDUSTRY, table.AVERAGE_SALARY).all()
+    #results = session.execute("select * from data_jobs")
+    session.close()
+    
+    table_dictionary = []
+    for JOB_CATEGORY, JOB_TITLE, SALARY_ESTIMATE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["job_title"] = JOB_TITLE
+        dict["salary_estimate"] = SALARY_ESTIMATE
+        dict["rating"] = RATING
+        dict["location"] = LOCATION
+        dict["industry"] = INDUSTRY
+        dict["average_salary"] = AVERAGE_SALARY
+        table_dictionary.append(dict)
+
+    return jsonify(table_dictionary)
 
 @app.route('/minsalaryscatter')
 def QueryMinSalaryScatter():
