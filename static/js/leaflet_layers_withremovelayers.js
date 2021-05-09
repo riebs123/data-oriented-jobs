@@ -5,42 +5,8 @@ var myMap = L.map("leafmap", {
 //  layers: [dataSciLayer,busAnalyLayer, dataEngLayer, dataAnalyLayer]
   // layers: [dataSciMarkers]
 });  
-var dataSciLayer;
-var busAnalyLayer;
-var dataEngLayer;
-var dataAnalyLayer;
 
-function fuckyou(selectedValue) {
-  console.log("well this worked.")
-  myMap.removeLayer(dataSciLayer);
-  myMap.removeLayer(busAnalyLayer);
-  myMap.removeLayer(dataAnalyLayer);
-  myMap.removeLayer(dataEngLayer);
-  if (selectedValue == "All"){
-    console.log("all")
-  myMap.addLayer(dataSciLayer);
-  myMap.addLayer(busAnalyLayer);
-  myMap.addLayer(dataEngLayer);
-  myMap.addLayer(dataAnalyLayer);
-  } else if (selectedValue == "Data Science" ){
-    console.log("DataSci!")
-  myMap.addLayer(dataSciLayer);
-  // myMap.removeLayer(busAnalyLayer);
-  // myMap.removeLayer(dataAnalyLayer);
-  // myMap.removeLayer(dataEngLayer);
-  } else if (selectedValue == "Data Analyst" ){
-    console.log("DataAnal!")
-  myMap.addLayer(dataAnalyLayer);
-  } else if (selectedValue == "Business Analyst" ){
-    console.log("BusAnal")
-  myMap.addLayer(busAnalyLayer);
-  } else if (selectedValue == "Data Engineer" ){
-    console.log("dataEng!@")
-  myMap.addLayer(dataEngLayer);
-  }
-}
 function drawLeafMap(selectedValue) {
-
 console.log(selectedValue);
 //define arrays to hold circles
 var busAnalMarkers = [];
@@ -113,11 +79,11 @@ for (var i = 0; i < job_counts.length; i++) {//6; i++){//
   }
 }
 
-//declared these outside of function
-  dataSciLayer = L.layerGroup(dataSciMarkers);
-  busAnalyLayer = L.layerGroup(busAnalMarkers);
-  dataEngLayer = L.layerGroup(dataEngMarkers);
-  dataAnalyLayer = L.layerGroup(dataAnalMarkers);
+
+  var dataSciLayer = L.layerGroup(dataSciMarkers);
+  var busAnalyLayer = L.layerGroup(busAnalMarkers);
+  var dataEngLayer = L.layerGroup(dataEngMarkers);
+  var dataAnalyLayer = L.layerGroup(dataAnalMarkers);
 
   var overlayMaps = {
     "Data Scientist": dataSciLayer,
@@ -143,24 +109,19 @@ for (var i = 0; i < job_counts.length; i++) {//6; i++){//
   // //  layers: [dataSciLayer,busAnalyLayer, dataEngLayer, dataAnalyLayer]
   //   // layers: [dataSciMarkers]
   // });
-  
-  // myMap.removeLayer(dataSciLayer);
-  // myMap.removeLayer(busAnalyLayer);
-  // myMap.removeLayer(dataAnalyLayer);
-  // myMap.removeLayer(dataEngLayer);
-  // if (selectedValue == "All"){
-  //   console.log("all")
+  if (selectedValue == "All"){
+    console.log("all")
   myMap.addLayer(dataSciLayer);
   myMap.addLayer(busAnalyLayer);
   myMap.addLayer(dataEngLayer);
   myMap.addLayer(dataAnalyLayer);
-  // } else if (selectedValue == "Data Science" ){
-  //   console.log("DataSci!")
-  // myMap.addLayer(dataSciLayer);
-  // myMap.removeLayer(busAnalyLayer);
-  // myMap.removeLayer(dataAnalyLayer);
-  // myMap.removeLayer(dataEngLayer);
-  // }
+  } else if (selectedValue == "Data Science" ){
+    console.log("DataSci!")
+  myMap.addLayer(dataSciLayer);
+  myMap.removeLayer(busAnalyLayer);
+  myMap.removeLayer(dataAnalyLayer);
+  myMap.removeLayer(dataEngLayer);
+  }
   // L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   //   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
   //   tileSize: 512,
@@ -176,10 +137,6 @@ for (var i = 0; i < job_counts.length; i++) {//6; i++){//
 
 
 // myMap.addLayer([dataSciLayer,busAnalyLayer, dataEngLayer, dataAnalyLayer])
-if (selectedValue){
-  console.log("there's something selected!")
-} else {
-  console.log("NOTHING IS SELECTED!")
 
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
@@ -199,7 +156,7 @@ if (selectedValue == 'Business Analyst'){
 // }
 //only want checkboxes in the control, not radio buttons hence first variable passed as NULL
 L.control.layers(null, overlayMaps, {collapsed: false}).addTo(myMap);
-}
+
 });
 };
 

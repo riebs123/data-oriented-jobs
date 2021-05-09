@@ -3,7 +3,8 @@ console.log('app.js loaded')
 function optionChanged(newSampleId) {
     console.log(`user selected  ${newSampleId}`);
 
-    drawLeafMap(id);
+    //drawLeafMap(newSampleId);
+    fuckyou(newSampleId);
     // DrawBubblechart(newSampleId);
     // ShowMetadata(newSampleId);
 }
@@ -16,7 +17,7 @@ function InitDashboard() {
         console.log(data)
 
         // var sampleNames = data[0].job_category;
-        var sampleNames = ['Data Science', 'Data Analyst', 'Data Engineer', 'Business Analyst']
+        var sampleNames = ['All','Data Science', 'Data Analyst', 'Data Engineer', 'Business Analyst']
         console.log(sampleNames)
 
         sampleNames.forEach(sampleId => {
@@ -27,7 +28,7 @@ function InitDashboard() {
     
     var id = sampleNames[0];
 
-    drawLeafMap(id);
+    drawLeafMap();
 
 
     // ShowMetadata(id);
