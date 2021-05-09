@@ -86,16 +86,93 @@ def QueryTableDict():
 
     #open a session, run the query, then close it again
     session = Session(engine)
-    results = session.query(table.JOB_CATEGORY, table.JOB_TITLE, table.SALARY_ESTIMATE, table.RATING, table.LOCATION, table.INDUSTRY, table.AVERAGE_SALARY).all()
-    #results = session.execute("select * from data_jobs")
+    results = session.query(table.JOB_CATEGORY, table.JOB_TITLE,  table.RATING, table.LOCATION, table.INDUSTRY, table.AVERAGE_SALARY).filter(table.JOB_CATEGORY == "Business Analyst").all()
+    
+    
+    #results = session.execute("select JOB_CATEGORY, JOB_TITLE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY  from data_jobs")
     session.close()
     
     table_dictionary = []
-    for JOB_CATEGORY, JOB_TITLE, SALARY_ESTIMATE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY in results:
+    for JOB_CATEGORY, JOB_TITLE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY in results:
         dict = {}
         dict["job_category"] = JOB_CATEGORY
         dict["job_title"] = JOB_TITLE
-        dict["salary_estimate"] = SALARY_ESTIMATE
+        #dict["salary_estimate"] = SALARY_ESTIMATE
+        dict["rating"] = RATING
+        dict["location"] = LOCATION
+        dict["industry"] = INDUSTRY
+        dict["average_salary"] = AVERAGE_SALARY
+        table_dictionary.append(dict)
+
+    return jsonify(table_dictionary)
+
+@app.route("/tabledict_dataEngineer")
+def QueryTableDict_dE():
+
+    #open a session, run the query, then close it again
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.JOB_TITLE,  table.RATING, table.LOCATION, table.INDUSTRY, table.AVERAGE_SALARY).filter(table.JOB_CATEGORY == "Data Engineer").all()
+    
+    
+    #results = session.execute("select JOB_CATEGORY, JOB_TITLE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY  from data_jobs")
+    session.close()
+    
+    table_dictionary = []
+    for JOB_CATEGORY, JOB_TITLE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["job_title"] = JOB_TITLE
+        #dict["salary_estimate"] = SALARY_ESTIMATE
+        dict["rating"] = RATING
+        dict["location"] = LOCATION
+        dict["industry"] = INDUSTRY
+        dict["average_salary"] = AVERAGE_SALARY
+        table_dictionary.append(dict)
+
+    return jsonify(table_dictionary)
+	
+@app.route("/tabledict_dataAnalyst")
+def QueryTableDict_dA():
+
+    #open a session, run the query, then close it again
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.JOB_TITLE,  table.RATING, table.LOCATION, table.INDUSTRY, table.AVERAGE_SALARY).filter(table.JOB_CATEGORY == "Data Analyst").all()
+    
+    
+    #results = session.execute("select JOB_CATEGORY, JOB_TITLE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY  from data_jobs")
+    session.close()
+    
+    table_dictionary = []
+    for JOB_CATEGORY, JOB_TITLE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["job_title"] = JOB_TITLE
+        #dict["salary_estimate"] = SALARY_ESTIMATE
+        dict["rating"] = RATING
+        dict["location"] = LOCATION
+        dict["industry"] = INDUSTRY
+        dict["average_salary"] = AVERAGE_SALARY
+        table_dictionary.append(dict)
+
+    return jsonify(table_dictionary)
+	
+@app.route("/tabledict_dataScience")
+def QueryTableDict_dS():
+
+    #open a session, run the query, then close it again
+    session = Session(engine)
+    results = session.query(table.JOB_CATEGORY, table.JOB_TITLE,  table.RATING, table.LOCATION, table.INDUSTRY, table.AVERAGE_SALARY).filter(table.JOB_CATEGORY == "Data Science").all()
+    
+    
+    #results = session.execute("select JOB_CATEGORY, JOB_TITLE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY  from data_jobs")
+    session.close()
+    
+    table_dictionary = []
+    for JOB_CATEGORY, JOB_TITLE, RATING,  LOCATION, INDUSTRY,  AVERAGE_SALARY in results:
+        dict = {}
+        dict["job_category"] = JOB_CATEGORY
+        dict["job_title"] = JOB_TITLE
+        #dict["salary_estimate"] = SALARY_ESTIMATE
         dict["rating"] = RATING
         dict["location"] = LOCATION
         dict["industry"] = INDUSTRY
