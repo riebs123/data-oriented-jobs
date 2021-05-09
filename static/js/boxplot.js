@@ -1,5 +1,7 @@
 console.log("boxplot.js is loaded")
 
+var div_select =  document.getElementById('leaflet');
+
 const chart = toastui.Chart;
 // avg_salary_arr = []
 // d3.json('/salarybox').then(function (data) {
@@ -11,7 +13,7 @@ const chart = toastui.Chart;
 //     };
 
 // });
-
+function dropBoxPlot(selectedValue) {
 
 d3.json('/salarybox').then(function (salary_data) {
     const el = document.getElementById('leaflet');
@@ -56,9 +58,9 @@ d3.json('/salarybox').then(function (salary_data) {
         }
 
     };
-
+    
     console.log(data_scientest_max_salary_arr);
-
+    
     const data = {
     categories: [
         'Minimum Salary', 'Maximum Salary', 'Average Salary'
@@ -103,7 +105,202 @@ d3.json('/salarybox').then(function (salary_data) {
     };
 
     chart.boxPlotChart({ el, data, options });
-});
+})};
+
+function reFilterBoxChar(selectedValue) {
+    console.log("well this worked for box chart too!.")
+
+    if (selectedValue == "All") {
+        div_select.removeChild(div_select.firstChild);
+        const el = document.getElementById('leaflet');
+        const data = {
+            categories: [
+                'Minimum Salary', 'Maximum Salary', 'Average Salary'
+            ],
+            series: [
+                {
+                    name: 'Data Analyst',
+                    data: [
+                        data_analyst_min_salary_arr,
+                        data_analyst_max_salary_arr,
+                        data_analyst_avg_salary_arr
+                    ],
+                },
+                {
+                    name: 'Data Science',
+                    data: [
+                        data_scientest_min_salary_arr,
+                        data_scientest_max_salary_arr,
+                        data_scientest_avg_salary_arr
+                    ],
+                },
+                {
+                    name: 'Business Analyst',
+                    data: [
+                        business_analyst_min_salary_arr,
+                        business_analyst_max_salary_arr,
+                        business_analyst_avg_salary_arr
+                    ],
+                },
+                {
+                    name: 'Data Engineer',
+                    data: [
+                        data_engineer_min_salary_arr,
+                        data_engineer_max_salary_arr,
+                        data_engineer_avg_salary_arr
+                    ],
+                }
+            ],
+            };
+            const options = {
+                chart: { width: 700, height: 400 },
+                };
+            
+            chart.boxPlotChart({ el, data, options });
+    } else if (selectedValue == "Data Science") {
+        div_select.removeChild(div_select.firstChild);
+        const el = document.getElementById('leaflet');
+        const data = {
+            categories: [
+                'Minimum Salary', 'Maximum Salary', 'Average Salary'
+            ],
+            series: [
+                {
+                    name: 'Data Science',
+                    data: [
+                        data_scientest_min_salary_arr,
+                        data_scientest_max_salary_arr,
+                        data_scientest_avg_salary_arr
+                    ],
+                }
+            ],
+            };
+            const options = {
+                chart: { width: 700, height: 400 },
+                };
+            
+            chart.boxPlotChart({ el, data, options });
+    } else if (selectedValue == "Data Analyst") {
+        div_select.removeChild(div_select.firstChild);
+        const el = document.getElementById('leaflet');
+        const data = {
+            categories: [
+                'Minimum Salary', 'Maximum Salary', 'Average Salary'
+            ],
+            series: [
+                {
+                    name: 'Data Analyst',
+                    data: [
+                        data_analyst_min_salary_arr,
+                        data_analyst_max_salary_arr,
+                        data_analyst_avg_salary_arr
+                    ],
+                }
+            ],
+            };
+            const options = {
+                chart: { width: 700, height: 400 },
+                };
+            
+            chart.boxPlotChart({ el, data, options });
+    } else if (selectedValue == "Business Analyst") {
+        div_select.removeChild(div_select.firstChild);
+        const el = document.getElementById('leaflet');
+        const data = {
+            categories: [
+                'Minimum Salary', 'Maximum Salary', 'Average Salary'
+            ],
+            series: [
+                {
+                    name: 'Business Analyst',
+                    data: [
+                        business_analyst_min_salary_arr,
+                        business_analyst_max_salary_arr,
+                        business_analyst_avg_salary_arr
+                    ],
+                }
+            ],
+            };
+            const options = {
+                chart: { width: 700, height: 400 },
+                };
+            
+            chart.boxPlotChart({ el, data, options });
+    } else if (selectedValue == "Data Engineer") {
+        div_select.removeChild(div_select.firstChild);
+        const el = document.getElementById('leaflet');
+        const data = {
+            categories: [
+                'Minimum Salary', 'Maximum Salary', 'Average Salary'
+            ],
+            series: [
+                {
+                    name: 'Data Engineer',
+                    data: [
+                        data_engineer_min_salary_arr,
+                        data_engineer_max_salary_arr,
+                        data_engineer_avg_salary_arr
+                    ],
+                }
+            ],
+            };
+            const options = {
+                chart: { width: 700, height: 400 },
+                };
+            
+            chart.boxPlotChart({ el, data, options });
+    } else {
+        div_select.removeChild(div_select.firstChild);
+        const el = document.getElementById('leaflet');
+        const data = {
+            categories: [
+                'Minimum Salary', 'Maximum Salary', 'Average Salary'
+            ],
+            series: [
+                {
+                    name: 'Data Analyst',
+                    data: [
+                        data_analyst_min_salary_arr,
+                        data_analyst_max_salary_arr,
+                        data_analyst_avg_salary_arr
+                    ],
+                },
+                {
+                    name: 'Data Science',
+                    data: [
+                        data_scientest_min_salary_arr,
+                        data_scientest_max_salary_arr,
+                        data_scientest_avg_salary_arr
+                    ],
+                },
+                {
+                    name: 'Business Analyst',
+                    data: [
+                        business_analyst_min_salary_arr,
+                        business_analyst_max_salary_arr,
+                        business_analyst_avg_salary_arr
+                    ],
+                },
+                {
+                    name: 'Data Engineer',
+                    data: [
+                        data_engineer_min_salary_arr,
+                        data_engineer_max_salary_arr,
+                        data_engineer_avg_salary_arr
+                    ],
+                }
+            ],
+            };
+            const options = {
+                chart: { width: 700, height: 400 },
+                };
+            
+            chart.boxPlotChart({ el, data, options });
+    }
+    
+  }
+
+
 
 // d3.json('/salarybox').then(function (data) {
 

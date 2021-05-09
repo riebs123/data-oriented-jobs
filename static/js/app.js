@@ -5,6 +5,7 @@ function optionChanged(newSampleId) {
 
     //drawLeafMap(newSampleId);
     reCircleForSelected(newSampleId);
+    reFilterBoxChar(newSampleId);
     // DrawBubblechart(newSampleId);
     // ShowMetadata(newSampleId);
 }
@@ -29,7 +30,7 @@ function InitDashboard() {
     var id = sampleNames[0];
 
     drawLeafMap();//drawing map assumes everything, dont' need to pass value
-
+    dropBoxPlot();
 
     // ShowMetadata(id);
 
