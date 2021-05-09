@@ -68,28 +68,19 @@ d3.json('/salarybox').then(function (salary_data) {
     ],
     series: [
         {
-            name: 'Data Analyst',
-            colors: "#F7DC6F",
-            data: [
-                data_analyst_min_boxplot_salary_arr,
-                data_analyst_max_boxplot_salary_arr,
-                data_analyst_avg_boxplot_salary_arr
-            ],
-        },
-        {
-            name: 'Data Science',
-            data: [
-                data_scientest_min_boxplot_salary_arr,
-                data_scientest_max_boxplot_salary_arr,
-                data_scientest_avg_boxplot_salary_arr
-            ],
-        },
-        {
             name: 'Business Analyst',
             data: [
                 business_analyst_min_boxplot_salary_arr,
                 business_analyst_max_boxplot_salary_arr,
                 business_analyst_avg_boxplot_salary_arr
+            ],
+        },
+        {
+            name: 'Data Analyst',
+            data: [
+                data_analyst_min_boxplot_salary_arr,
+                data_analyst_max_boxplot_salary_arr,
+                data_analyst_avg_boxplot_salary_arr
             ],
         },
         {
@@ -99,11 +90,23 @@ d3.json('/salarybox').then(function (salary_data) {
                 data_engineer_max_boxplot_salary_arr,
                 data_engineer_avg_boxplot_salary_arr
             ],
+        },
+        {
+            name: 'Data Science',
+            data: [
+                data_scientest_min_boxplot_salary_arr,
+                data_scientest_max_boxplot_salary_arr,
+                data_scientest_avg_boxplot_salary_arr
+            ],
         }
     ],
     };
     const options = {
-    chart: { width: 700, height: 400 },
+    theme: {
+        series:{
+            colors: ["#F7DC6F", "#DE3163", "#008000", "#0000FF"]
+    }},
+    chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
     };
 
     chart.boxPlotChart({ el, data, options });
@@ -121,43 +124,46 @@ function reFilterBoxChar(selectedValue) {
             ],
             series: [
                 {
-                    name: 'Data Analyst',
-                    color: "#F7DC6F",
-                    data: [
-                        data_analyst_min_boxplot_salary_arr,
-                        data_analyst_max_boxplot_salary_arr,
-                        data_analyst_avg_boxplot_salary_arr
-                    ],
-                },
-                {
-                    name: 'Data Science',
-                    data: [
-                        data_scientest_min_boxplot_salary_arr,
-                        data_scientest_max_boxplot_salary_arr,
-                        data_scientest_avg_boxplot_salary_arr
-                    ],
-                },
-                {
                     name: 'Business Analyst',
-                    data: [
-                        business_analyst_min_boxplot_salary_arr,
-                        business_analyst_max_boxplot_salary_arr,
-                        business_analyst_avg_boxplot_salary_arr
-                    ],
-                },
-                {
-                    name: 'Data Engineer',
-                    data: [
-                        data_engineer_min_boxplot_salary_arr,
-                        data_engineer_max_boxplot_salary_arr,
-                        data_engineer_avg_boxplot_salary_arr
-                    ],
+            data: [
+                business_analyst_min_boxplot_salary_arr,
+                business_analyst_max_boxplot_salary_arr,
+                business_analyst_avg_boxplot_salary_arr
+            ],
+        },
+        {
+            name: 'Data Analyst',
+            data: [
+                data_analyst_min_boxplot_salary_arr,
+                data_analyst_max_boxplot_salary_arr,
+                data_analyst_avg_boxplot_salary_arr
+            ],
+        },
+        {
+            name: 'Data Engineer',
+            data: [
+                data_engineer_min_boxplot_salary_arr,
+                data_engineer_max_boxplot_salary_arr,
+                data_engineer_avg_boxplot_salary_arr
+            ],
+        },
+        {
+            name: 'Data Science',
+            data: [
+                data_scientest_min_boxplot_salary_arr,
+                data_scientest_max_boxplot_salary_arr,
+                data_scientest_avg_boxplot_salary_arr
+            ],
                 }
             ],
             }
             const options = {
-                chart: { width: 700, height: 400 },
-                };
+                theme: {
+                    series:{
+                        colors: ["#F7DC6F", "#DE3163", "#008000", "#0000FF"]
+                }},
+                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+            };
             
             chart.boxPlotChart({ el, data, options });
 
@@ -180,8 +186,12 @@ function reFilterBoxChar(selectedValue) {
             ],
             };
             const options = {
-                chart: { width: 700, height: 400 },
-                };
+                theme: {
+                    series:{
+                        colors: ["#0000FF"]
+                }},
+                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+            };
             
             chart.boxPlotChart({ el, data, options });
 
@@ -204,8 +214,12 @@ function reFilterBoxChar(selectedValue) {
             ],
             };
             const options = {
-                chart: { width: 700, height: 400 },
-                };
+                theme: {
+                    series:{
+                        colors: ["#DE3163"]
+                }},
+                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+            };
             
             chart.boxPlotChart({ el, data, options });
 
@@ -228,8 +242,12 @@ function reFilterBoxChar(selectedValue) {
             ],
             };
             const options = {
-                chart: { width: 700, height: 400 },
-                };
+                theme: {
+                    series:{
+                        colors: ["#F7DC6F"]
+                }},
+                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+            };
             
             chart.boxPlotChart({ el, data, options });
 
@@ -252,8 +270,12 @@ function reFilterBoxChar(selectedValue) {
             ],
             };
             const options = {
-                chart: { width: 700, height: 400 },
-                };
+                theme: {
+                    series:{
+                        colors: ["#008000"]
+                }},
+                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+            };
             
             chart.boxPlotChart({ el, data, options });
 

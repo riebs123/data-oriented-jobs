@@ -86,7 +86,9 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
     var data = [allcategoriessalaries_avg];
 
     var layout = {
+        title: "Salaries (All Categories) vs Company Rating",
         xaxis: {
+            title: "Rating",
             autotick: true,
             ticks: 'outside',
             tick0: 0,
@@ -96,7 +98,8 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
             tickcolor: '#000'
         },
         yaxis: {
-            autotick: true,
+            title: "Salary",
+            utotick: true,
             ticks: 'outside',
             tick0: 0,
             dtick: 1,
@@ -128,7 +131,9 @@ function reDrawScatterPlot(selectedValue) {
         var data = [allcategoriessalaries_avg];
     
         var layout = {
+            title: "Salaries (All Categories) vs Company Rating",
             xaxis: {
+                title: "Rating",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -138,6 +143,7 @@ function reDrawScatterPlot(selectedValue) {
                 tickcolor: '#000'
             },
             yaxis: {
+                title: "Salary",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -165,7 +171,9 @@ function reDrawScatterPlot(selectedValue) {
         var data = [datascientest_avg];
     
         var layout = {
+            title: "Salaries (Data Science) vs Company Rating",
             xaxis: {
+                title: "Rating",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -175,6 +183,7 @@ function reDrawScatterPlot(selectedValue) {
                 tickcolor: '#000'
             },
             yaxis: {
+                title: "Salary",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -201,7 +210,9 @@ function reDrawScatterPlot(selectedValue) {
         var data = [dataanalyst_avg];
     
         var layout = {
+            title: "Salaries (Data Analyst) vs Company Rating",
             xaxis: {
+                title: "Rating",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -211,6 +222,7 @@ function reDrawScatterPlot(selectedValue) {
                 tickcolor: '#000'
             },
             yaxis: {
+                title: "Salary",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -228,17 +240,19 @@ function reDrawScatterPlot(selectedValue) {
 
         const el = document.getElementById('leaflet');
         
-        var dataanalyst_avg = {
+        var businessnalyst_avg = {
             x: business_analyst_rating_arr,
             y: business_analyst_avg_scatter_salary_arr,
             mode: 'markers',
             type: 'scatter'
         }
     
-        var data = [dataanalyst_avg];
+        var data = [businessnalyst_avg];
     
         var layout = {
+            title: "Salaries (Business Analyst) vs Company Rating",
             xaxis: {
+                title: "Rating",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -248,6 +262,7 @@ function reDrawScatterPlot(selectedValue) {
                 tickcolor: '#000'
             },
             yaxis: {
+                title: "Salary",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -275,7 +290,9 @@ function reDrawScatterPlot(selectedValue) {
         var data = [dataengineer_avg];
     
         var layout = {
+            title: "Salaries (Data Engineer) vs Company Rating",
             xaxis: {
+                title: "Rating",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
@@ -285,6 +302,7 @@ function reDrawScatterPlot(selectedValue) {
                 tickcolor: '#000'
             },
             yaxis: {
+                title: "Salary",
                 autotick: true,
                 ticks: 'outside',
                 tick0: 0,
