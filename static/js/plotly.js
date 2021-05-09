@@ -64,14 +64,16 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
     };
 
     var datascientest_min = {
-        x: data_scientest_min_salary_arr,
-        y: data_scientest_rating_arr,
+        x: data_scientest_rating_arr,
+        y: data_scientest_min_salary_arr,
+        mode: 'markers',
         type: 'scatter'
     }
 
     var dataanalyst_min = {
-        x: data_analyst_min_salary_arr,
-        y: data_analyst_rating_arr,
+        x: data_analyst_rating_arr,
+        y: data_analyst_min_salary_arr,
+        mode: 'markers',
         type: 'scatter'
     }
 
