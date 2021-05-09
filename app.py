@@ -74,53 +74,53 @@ def QuerySuperDict():
     return jsonify(super_dictionary)
         
 
-@app.route('/minsalaryscatter')
-def QueryMinSalaryScatter():
+# @app.route('/minsalaryscatter')
+# def QueryMinSalaryScatter():
 
-    session = Session(engine)
-    results = session.query(table.RATING, table.MIN_SALARY)
-    session.close
+#     session = Session(engine)
+#     results = session.query(table.RATING, table.MIN_SALARY)
+#     session.close
 
-    min_salary_vs_rating_dictionary = []
-    for RATING, MIN_SALARY in results:
-        dict = {}
-        dict["rating"] = RATING
-        dict["min_salary"] = MIN_SALARY
-        min_salary_vs_rating_dictionary.append(dict)
+#     min_salary_vs_rating_dictionary = []
+#     for RATING, MIN_SALARY in results:
+#         dict = {}
+#         dict["rating"] = RATING
+#         dict["min_salary"] = MIN_SALARY
+#         min_salary_vs_rating_dictionary.append(dict)
 
-    return jsonify(min_salary_vs_rating_dictionary)
+#     return jsonify(min_salary_vs_rating_dictionary)
 
-@app.route('/maxsalaryscatter')
-def QueryMaxSalaryScatter():
+# @app.route('/maxsalaryscatter')
+# def QueryMaxSalaryScatter():
 
-    session = Session(engine)
-    results = session.query(table.RATING, table.MAX_SALARY)
-    session.close
+#     session = Session(engine)
+#     results = session.query(table.RATING, table.MAX_SALARY)
+#     session.close
 
-    max_salary_vs_rating_dictionary = []
-    for RATING, MAX_SALARY in results:
-        dict = {}
-        dict["rating"] = RATING
-        dict["max_salary"] = MAX_SALARY
-        max_salary_vs_rating_dictionary.append(dict)
+#     max_salary_vs_rating_dictionary = []
+#     for RATING, MAX_SALARY in results:
+#         dict = {}
+#         dict["rating"] = RATING
+#         dict["max_salary"] = MAX_SALARY
+#         max_salary_vs_rating_dictionary.append(dict)
 
-    return jsonify(max_salary_vs_rating_dictionary)
+#     return jsonify(max_salary_vs_rating_dictionary)
 
-@app.route('/averagesalaryscatter')
-def QueryAverageSalaryScatter():
+# @app.route('/averagesalaryscatter')
+# def QueryAverageSalaryScatter():
 
-    session = Session(engine)
-    results = session.query(table.RATING, table.AVERAGE_SALARY)
-    session.close
+#     session = Session(engine)
+#     results = session.query(table.RATING, table.AVERAGE_SALARY)
+#     session.close
 
-    average_salary_vs_rating_dictionary = []
-    for RATING, AVERAGE_SALARY in results:
-        dict = {}
-        dict["rating"] = RATING
-        dict["average_salary"] = AVERAGE_SALARY
-        average_salary_vs_rating_dictionary.append(dict)
+#     average_salary_vs_rating_dictionary = []
+#     for RATING, AVERAGE_SALARY in results:
+#         dict = {}
+#         dict["rating"] = RATING
+#         dict["average_salary"] = AVERAGE_SALARY
+#         average_salary_vs_rating_dictionary.append(dict)
 
-    return jsonify(average_salary_vs_rating_dictionary)
+#     return jsonify(average_salary_vs_rating_dictionary)
 
 @app.route('/jobbubbles')
 def QueryJobBubbleChart():
@@ -160,55 +160,72 @@ def QuerySalaryBox():
     return jsonify(salary_dictionary)
 
 
-@app.route('/minsalarybox')
-def QueryMinSalaryBox():
+# @app.route('/minsalarybox')
+# def QueryMinSalaryBox():
+
+#     session = Session(engine)
+#     results = session.query(table.JOB_CATEGORY, table.MIN_SALARY)
+#     session.close
+
+#     min_salary_dictionary = []
+#     for JOB_CATEGORY, MIN_SALARY in results:
+#         dict = {}
+#         dict["job_category"] = JOB_CATEGORY
+#         dict["min_salary"] = MIN_SALARY
+#         min_salary_dictionary.append(dict)
+
+#     return jsonify(min_salary_dictionary)
+
+# @app.route('/maxsalarybox')
+# def QueryMaxSalaryBox():
+
+#     session = Session(engine)
+#     results = session.query(table.JOB_CATEGORY, table.MAX_SALARY)
+#     session.close
+
+#     max_salary_dictionary = []
+#     for JOB_CATEGORY, MAX_SALARY in results:
+#         dict = {}
+#         dict["job_category"] = JOB_CATEGORY
+#         dict["max_salary"] = MAX_SALARY
+#         max_salary_dictionary.append(dict)
+
+#     return jsonify(max_salary_dictionary)
+
+# @app.route('/averagesalarybox')
+# def QueryAverageSalaryBox():
+
+#     session = Session(engine)
+#     results = session.query(table.JOB_CATEGORY, table.AVERAGE_SALARY).filter(table.AVERAGE_SALARY.isnot(None))
+#     session.close
+
+#     average_salary_dictionary = []
+#     for JOB_CATEGORY, AVERAGE_SALARY in results:
+#         dict = {}
+#         dict["job_category"] = JOB_CATEGORY
+#         dict["average_salary"] = AVERAGE_SALARY
+#         average_salary_dictionary.append(dict)
+
+#     return jsonify(average_salary_dictionary)
+
+@app.route("/salaryvscompanyrating")
+def QuerySalaryVsRatings():
 
     session = Session(engine)
-    results = session.query(table.JOB_CATEGORY, table.MIN_SALARY)
+    results = session.query(table.JOB_CATEGORY, table.MIN_SALARY, table.MAX_SALARY, table.AVERAGE_SALARY, table.RATING).filter(table.RATING !=-1)
     session.close
 
-    min_salary_dictionary = []
-    for JOB_CATEGORY, MIN_SALARY in results:
+    salary_vs_rating_dict = []
+    for JOB_CATEGORY, MIN_SALARY, MAX_SALARY, AVERAGE_SALARY, RATING in results:
         dict = {}
         dict["job_category"] = JOB_CATEGORY
         dict["min_salary"] = MIN_SALARY
-        min_salary_dictionary.append(dict)
-
-    return jsonify(min_salary_dictionary)
-
-@app.route('/maxsalarybox')
-def QueryMaxSalaryBox():
-
-    session = Session(engine)
-    results = session.query(table.JOB_CATEGORY, table.MAX_SALARY)
-    session.close
-
-    max_salary_dictionary = []
-    for JOB_CATEGORY, MAX_SALARY in results:
-        dict = {}
-        dict["job_category"] = JOB_CATEGORY
         dict["max_salary"] = MAX_SALARY
-        max_salary_dictionary.append(dict)
-
-    return jsonify(max_salary_dictionary)
-
-@app.route('/averagesalarybox')
-def QueryAverageSalaryBox():
-
-    session = Session(engine)
-    results = session.query(table.JOB_CATEGORY, table.AVERAGE_SALARY).filter(table.AVERAGE_SALARY.isnot(None))
-    session.close
-
-    average_salary_dictionary = []
-    for JOB_CATEGORY, AVERAGE_SALARY in results:
-        dict = {}
-        dict["job_category"] = JOB_CATEGORY
         dict["average_salary"] = AVERAGE_SALARY
-        average_salary_dictionary.append(dict)
+        dict["rating"] = RATING
+        salary_vs_rating_dict.append(dict)
 
-    return jsonify(average_salary_dictionary)
-
-#@app.route("/salaryvscompanyrating")
+    return jsonify(salary_vs_rating_dict)
 
 if __name__ == '__main__':
     app.run(debug=True)
