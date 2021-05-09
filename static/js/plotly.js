@@ -66,6 +66,7 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
     var datascientest_min = {
         x: data_scientest_rating_arr,
         y: data_scientest_min_salary_arr,
+        name: 'Data Scientist',
         mode: 'markers',
         type: 'scatter'
     }
@@ -73,6 +74,7 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
     var dataanalyst_min = {
         x: data_analyst_rating_arr,
         y: data_analyst_min_salary_arr,
+        name: 'Data Analyst',
         mode: 'markers',
         type: 'scatter'
     }
@@ -80,7 +82,9 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
     var data = [datascientest_min, dataanalyst_min];
 
     var layout = {
+        title: `Salary vs. Company Rating`,
         xaxis: {
+            title: { text: 'Rating'},
             autotick: true,
             ticks: 'outside',
             tick0: 0,
@@ -88,8 +92,11 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
             ticklen: 8,
             tickwidth: 4,
             tickcolor: '#000'
+            
+        
         },
         yaxis: {
+            title: { text: 'Salary'},
             autotick: true,
             ticks: 'outside',
             tick0: 0,
