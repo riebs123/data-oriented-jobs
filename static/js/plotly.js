@@ -1,6 +1,8 @@
 console.log('plotly js loaded');
 
+dib_select_scatter = document.getElementById('scatter');
 
+function dropScatterPlot(selectedValue) {
 d3.json("/salaryvscompanyrating").then((scatter_data) => {
 
     console.log(scatter_data);
@@ -8,24 +10,29 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
     // min_salary = []
     // rating = []
 
-    data_scientest_min_salary_arr = []
-    data_scientest_max_salary_arr = []
-    data_scientest_avg_salary_arr = [] 
+    total_min_scatter_salary_arr = []
+    total_max_scatter_salary_arr = []
+    total_avg_scatter_salary_arr = [] 
+    total_rating_arr = []
+
+    data_scientest_min_scatter_salary_arr = []
+    data_scientest_max_scatter_salary_arr = []
+    data_scientest_avg_scatter_salary_arr = [] 
     data_scientest_rating_arr = []
     
-    data_analyst_min_salary_arr = []
-    data_analyst_max_salary_arr = []
-    data_analyst_avg_salary_arr = []  
+    data_analyst_min_scatter_salary_arr = []
+    data_analyst_max_scatter_salary_arr = []
+    data_analyst_avg_scatter_salary_arr = []  
     data_analyst_rating_arr = []
 
-    data_engineer_min_salary_arr = []
-    data_engineer_max_salary_arr = []
-    data_engineer_avg_salary_arr = []  
+    data_engineer_min_scatter_salary_arr = []
+    data_engineer_max_scatter_salary_arr = []
+    data_engineer_avg_scatter_salary_arr = []  
     data_engineer_rating_arr = []
 
-    business_analyst_min_salary_arr = []
-    business_analyst_max_salary_arr = []
-    business_analyst_avg_salary_arr = []  
+    business_analyst_min_scatter_salary_arr = []
+    business_analyst_max_scatter_salary_arr = []
+    business_analyst_avg_scatter_salary_arr = []  
     business_analyst_rating_arr = []
 
 
@@ -36,48 +43,47 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
         // rating.push(scatter_data[i]['rating'])
 
         if (scatter_data[i]['job_category'] === 'Data Science'){
-            data_scientest_avg_salary_arr.push(scatter_data[i]['average_salary'])
-            data_scientest_min_salary_arr.push(scatter_data[i]['min_salary'])
-            data_scientest_max_salary_arr.push(scatter_data[i]['max_salary'])
+            data_scientest_avg_scatter_salary_arr.push(scatter_data[i]['average_salary'])
+            data_scientest_min_scatter_salary_arr.push(scatter_data[i]['min_salary'])
+            data_scientest_max_scatter_salary_arr.push(scatter_data[i]['max_salary'])
             data_scientest_rating_arr.push(scatter_data[i]['rating'])
 
         }
         if (scatter_data[i]['job_category'] === 'Data Analyst'){
-            data_analyst_avg_salary_arr.push(scatter_data[i]['average_salary'])
-            data_analyst_min_salary_arr.push(scatter_data[i]['min_salary'])
-            data_analyst_max_salary_arr.push(scatter_data[i]['max_salary'])
+            data_analyst_avg_scatter_salary_arr.push(scatter_data[i]['average_salary'])
+            data_analyst_min_scatter_salary_arr.push(scatter_data[i]['min_salary'])
+            data_analyst_max_scatter_salary_arr.push(scatter_data[i]['max_salary'])
             data_analyst_rating_arr.push(scatter_data[i]['rating'])
         }
         if (scatter_data[i]['job_category'] === 'Data Engineer'){
-            data_engineer_avg_salary_arr.push(scatter_data[i]['average_salary'])
-            data_engineer_min_salary_arr.push(scatter_data[i]['min_salary'])
-            data_engineer_max_salary_arr.push(scatter_data[i]['max_salary'])
+            data_engineer_avg_scatter_salary_arr.push(scatter_data[i]['average_salary'])
+            data_engineer_min_scatter_salary_arr.push(scatter_data[i]['min_salary'])
+            data_engineer_max_scatter_salary_arr.push(scatter_data[i]['max_salary'])
             data_engineer_rating_arr.push(scatter_data[i]['rating'])
         }
         if (scatter_data[i]['job_category'] === 'Business Analyst'){
-            business_analyst_avg_salary_arr.push(scatter_data[i]['average_salary'])
-            business_analyst_min_salary_arr.push(scatter_data[i]['min_salary'])
-            business_analyst_max_salary_arr.push(scatter_data[i]['max_salary'])
+            business_analyst_avg_scatter_salary_arr.push(scatter_data[i]['average_salary'])
+            business_analyst_min_scatter_salary_arr.push(scatter_data[i]['min_salary'])
+            business_analyst_max_scatter_salary_arr.push(scatter_data[i]['max_salary'])
             business_analyst_rating_arr.push(scatter_data[i]['rating'])
+        }
+        else {
+            total_avg_scatter_salary_arr.push(scatter_data[i]['average_salary'])
+            total_min_scatter_salary_arr.push(scatter_data[i]['min_salary'])
+            total_max_scatter_salary_arr.push(scatter_data[i]['max_salary'])
+            total_rating_arr.push(scatter_data[i]['rating'])
         }
 
     };
 
-    var datascientest_min = {
-        x: data_scientest_rating_arr,
-        y: data_scientest_min_salary_arr,
+    var allcategoriessalaries_avg = {
+        x: total_rating_arr,
+        y: total_avg_scatter_salary_arr,
         mode: 'markers',
         type: 'scatter'
     }
 
-    var dataanalyst_min = {
-        x: data_analyst_rating_arr,
-        y: data_analyst_min_salary_arr,
-        mode: 'markers',
-        type: 'scatter'
-    }
-
-    var data = [datascientest_min, dataanalyst_min];
+    var data = [allcategoriessalaries_avg];
 
     var layout = {
         xaxis: {
@@ -102,4 +108,193 @@ d3.json("/salaryvscompanyrating").then((scatter_data) => {
 
     Plotly.newPlot('scatter', data, layout);
 
-});
+})};
+
+function reDrawScatterPlot(selectedValue) {
+    console.log('selector works for scatter!')
+
+    if (selectedValue == "All") {
+        dib_select_scatter.removeChild(dib_select_scatter.firstChild);
+
+        const el = document.getElementById('leaflet');
+        
+        var allcategoriessalaries_avg = {
+            x: total_rating_arr,
+            y: total_avg_scatter_salary_arr,
+            mode: 'markers',
+            type: 'scatter'
+        }
+    
+        var data = [allcategoriessalaries_avg];
+    
+        var layout = {
+            xaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 5000,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            },
+            yaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 1,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            }
+                }
+    
+        Plotly.newPlot('scatter', data, layout);
+
+    } else if (selectedValue == "Data Science") {
+        dib_select_scatter.removeChild(dib_select_scatter.firstChild);
+
+        const el = document.getElementById('leaflet');
+        
+        var datascientest_avg = {
+            x: data_scientest_rating_arr,
+            y: data_scientest_avg_scatter_salary_arr,
+            mode: 'markers',
+            type: 'scatter'
+        }
+    
+        var data = [datascientest_avg];
+    
+        var layout = {
+            xaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 5000,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            },
+            yaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 1,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            }
+                }
+    
+        Plotly.newPlot('scatter', data, layout);
+    } else if (selectedValue == "Data Analyst") {
+        dib_select_scatter.removeChild(dib_select_scatter.firstChild);
+
+        const el = document.getElementById('leaflet');
+        
+        var dataanalyst_avg = {
+            x: data_analyst_rating_arr,
+            y: data_analyst_avg_scatter_salary_arr,
+            mode: 'markers',
+            type: 'scatter'
+        }
+    
+        var data = [dataanalyst_avg];
+    
+        var layout = {
+            xaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 5000,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            },
+            yaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 1,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            }
+                }
+    
+        Plotly.newPlot('scatter', data, layout);
+        
+    } else if (selectedValue == "Business Analyst") {
+        dib_select_scatter.removeChild(dib_select_scatter.firstChild);
+
+        const el = document.getElementById('leaflet');
+        
+        var dataanalyst_avg = {
+            x: business_analyst_rating_arr,
+            y: business_analyst_avg_scatter_salary_arr,
+            mode: 'markers',
+            type: 'scatter'
+        }
+    
+        var data = [dataanalyst_avg];
+    
+        var layout = {
+            xaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 5000,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            },
+            yaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 1,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            }
+                }
+    
+        Plotly.newPlot('scatter', data, layout);
+
+    } else if (selectedValue == "Data Engineer") {
+        dib_select_scatter.removeChild(dib_select_scatter.firstChild);
+
+        const el = document.getElementById('leaflet');
+        
+        var dataengineer_avg = {
+            x: data_engineer_rating_arr,
+            y: data_engineer_avg_scatter_salary_arr,
+            mode: 'markers',
+            type: 'scatter'
+        }
+    
+        var data = [dataengineer_avg];
+    
+        var layout = {
+            xaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 5000,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            },
+            yaxis: {
+                autotick: true,
+                ticks: 'outside',
+                tick0: 0,
+                dtick: 1,
+                ticklen: 8,
+                tickwidth: 4,
+                tickcolor: '#000'
+            }
+                }
+    
+        Plotly.newPlot('scatter', data, layout);
+    }  
+}

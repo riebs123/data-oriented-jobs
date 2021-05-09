@@ -9,6 +9,18 @@ body {
   width: 100%;
 }
 
+#leaflet {
+  position: relative;
+  height: 50vh;
+  width:100%;
+}
+
+#scatter {
+  position: relative;
+  height: 50vh;
+  width:100%;
+}
+
 body,
 html {
   height: 100%;
