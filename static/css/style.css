@@ -11,13 +11,15 @@ body {
 
 #leaflet {
   position: relative;
-  height: 50vh;
+  height: 100%;
   width:100%;
+  margin-bottom: 5%;
 }
 
 #scatter {
   position: relative;
   height: 50vh;
+  margin-bottom: 5%;
   width:100%;
 }
 
@@ -38,7 +40,7 @@ body::after {
   left: 0;
   bottom: 0;
   right: 0;
-  background-repeat: no-repeat;
+  background-repeat: space;
   background-size: 100% 100%;
   position: absolute;
   z-index: -1;   

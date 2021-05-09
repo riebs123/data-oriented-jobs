@@ -33,31 +33,37 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
         <div class="well">
           <h5>Job Category</h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
+        
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">Location Info</h3>
+            <h3 class="panel-title"> Job Postings Data</h3>
+            
+
           </div>
           <div id="sample-metadata" class="panel-body"></div>
+          <a href="/table">Click to browse jobs</a>
         </div>
       </div>
-      <div class="col-md-5">
+    </div>
+      <div class = "row">
+      
+      <div class="col-md-12">
         <div id="leaflet"></div>
-        <p>Leaflet map here</p>
       </div>
-      <div class="col-md-5">
+    </div>
+      <div class = "row">
+      <div class="col-md-12">
         <div id="scatter"></div>
-        <p>Bar chart here</p>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div id="leafmap"></div>
-        <p>leaflet map here</p>
       </div>
     </div>
   </div>

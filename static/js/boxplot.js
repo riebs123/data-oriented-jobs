@@ -106,7 +106,7 @@ d3.json('/salarybox').then(function (salary_data) {
         series:{
             colors: ["#F7DC6F", "#DE3163", "#008000", "#0000FF"]
     }},
-    chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+    chart: { title: 'Salary Ranges by Job Category', width: 1000, height: 400 },
     };
 
     chart.boxPlotChart({ el, data, options });
@@ -162,7 +162,7 @@ function reFilterBoxChar(selectedValue) {
                     series:{
                         colors: ["#F7DC6F", "#DE3163", "#008000", "#0000FF"]
                 }},
-                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+                chart: { title: 'Salary Ranges by Job Category', width: 1000, height: 400 },
             };
             
             chart.boxPlotChart({ el, data, options });
@@ -190,7 +190,7 @@ function reFilterBoxChar(selectedValue) {
                     series:{
                         colors: ["#0000FF"]
                 }},
-                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+                chart: { title: 'Salary Ranges by Job Category', width: 1000, height: 400 },
             };
             
             chart.boxPlotChart({ el, data, options });
@@ -218,7 +218,7 @@ function reFilterBoxChar(selectedValue) {
                     series:{
                         colors: ["#DE3163"]
                 }},
-                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+                chart: { title: 'Salary Ranges by Job Category', width: 1000, height: 400 },
             };
             
             chart.boxPlotChart({ el, data, options });
@@ -246,7 +246,7 @@ function reFilterBoxChar(selectedValue) {
                     series:{
                         colors: ["#F7DC6F"]
                 }},
-                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+                chart: { title: 'Salary Ranges by Job Category', width: 1000, height: 400 },
             };
             
             chart.boxPlotChart({ el, data, options });
@@ -274,7 +274,7 @@ function reFilterBoxChar(selectedValue) {
                     series:{
                         colors: ["#008000"]
                 }},
-                chart: { title: 'Salary Ranges by Job Category', width: 700, height: 400 },
+                chart: { title: 'Salary Ranges by Job Category', width: 1000, height: 400 },
             };
             
             chart.boxPlotChart({ el, data, options });
@@ -322,7 +322,7 @@ function reFilterBoxChar(selectedValue) {
     //         ],
     //         };
     //         const options = {
-    //             chart: { width: 700, height: 400 },
+    //             chart: { width: 1000, height: 400 },
     //             };
             
     //         chart.boxPlotChart({ el, data, options });
