@@ -6,7 +6,7 @@ Our goal is to analyze job listings for data oriented roles across the US.
 
 <b>Before Running</b>
 
-1. Update config.py file with your PostGres credentials (username=<yourPGuser>, password <yourPGpw>, db=DataJobs)
+1. Update config.py file with your PostGres credentials (username, password, db=DataJobs)
 1. Update config.js file with your MapBox API credentials
 1. Login to pgAdmin and create a database called DataJobs
 1. Make sure you create your DB BEFORE running the data_jobs_etl.ipynb
