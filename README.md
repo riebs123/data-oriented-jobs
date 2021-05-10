@@ -10,7 +10,7 @@ Our goal is to analyze job listings for data oriented roles across the US.
 1. Update config.js file with your MapBox API credentials
 1. Login to pgAdmin and create a database called DataJobs
 1. Make sure you create your DB BEFORE running the data_jobs_etl.ipynb
-1. Run all cells in jupyter notebook
+1. Run all cells in jupyter notebook (data_jobs_etl.ipynb)
 1. Run app.py
 1. Enter this address in your Chrome browser: http://127.0.0.1:5000/. You will see that this loads the index page
 1. Interact with the top left control to change visualizations across the index page
