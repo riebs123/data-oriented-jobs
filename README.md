@@ -1,7 +1,7 @@
 
-<b>Project Description / Overview:</b>
+<b>Data Oriented Jobs</b>
 
-Our goal is to analyze job listings by city for data oriented roles across the US.
+Our goal is to analyze job listings for data oriented roles across the US.
 
 
 <b>Before Running</b>
